@@ -12,7 +12,8 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
         charset: 'utf8',
         collate: 'utf8_general_ci',
     },
-    logging: false
+    logging: false,
+    timezone: '-03:00' // Defina o fuso horário conforme necessário
 });
 
 export default sequelize;
