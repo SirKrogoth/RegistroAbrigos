@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.DataTypes.STRING(11),
         allowNull: false
       },
+      obs: {
+        type: Sequelize.DataTypes.STRING(11),
+        allowNull: true
+      },
       createdAt: {
         type: Sequelize.DataTypes.DATE,
         allowNull: false 

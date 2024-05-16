@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false
       },
+      obs: {
+        type: Sequelize.DataTypes.STRING(255),
+        allowNull: true
+      },
       createdAt: {
         type: Sequelize.DataTypes.DATE,
         allowNull: false 

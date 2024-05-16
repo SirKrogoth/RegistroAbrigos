@@ -32,7 +32,7 @@ module.exports = {
         allowNull: false
       },
       cpf: {
-        type: Sequelize.DataTypes.INTEGER(11),
+        type: Sequelize.DataTypes.STRING(11),
         allowNull: false
       },
       senha: {
@@ -41,7 +41,7 @@ module.exports = {
       },
       obs: {
         type: Sequelize.DataTypes.STRING(255),
-        allowNull: false
+        allowNull: true
       },
       createdAt: {
         type: Sequelize.DataTypes.DATE,
