@@ -2,4 +2,3 @@ node_modules
 dist
 .env
 keys/private.key
-keys/public.key

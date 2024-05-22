@@ -37,17 +37,13 @@ async function create(req: Request, res: Response, next: any){
     }
 }
 
-async function findByCodigo(req: Request, res: Response, next: any){
+async function loginByCodigo(req: Request, res: Response, next: any){
     try {
         const usuario = req.body as iUsuarioLogin;
 
-        const result = await usuariosRepository.findByCodigo(usuario);
-
-        if(result === null) return res.status(StatusCodes.UNAUTHORIZED).end();
-
-        const isValid = autenticacao.comparePassword(usuario.senha, result.senha);
-
-        if(!isValid) return res.status(StatusCodes.UNAUTHORIZED).end();
+        const result = await usuariosRepository.loginByCodigo(usuario);
+        
+        if(result === null) return res.status(StatusCodes.UNAUTHORIZED).end();        
 
         res.status(StatusCodes.OK).json(result).end();
 
@@ -60,5 +56,5 @@ async function findByCodigo(req: Request, res: Response, next: any){
 export default {
     health,
     create,
-    findByCodigo
+    loginByCodigo
 }
