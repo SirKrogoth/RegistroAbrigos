@@ -1,14 +1,15 @@
 import { Router } from 'express';
 import usuarioController from '../../controllers/usuarios/usuariosController';
-import { validarLoginUsuario } from '../../middlewares/usuarios/usuarioMiddleware';
+import { isAuthenticated } from './middlewares/isAuthenticated';
 
 const router = Router();
 
 //HTTP POST
-router.post('/criarUsuario', validarLoginUsuario, usuarioController.create);
-router.post('/login', usuarioController.loginByCodigo);
+router.post('/usuarios/criarUsuario', usuarioController.create);
+router.post('/usuarios/login', usuarioController.loginByCPF);
 
 //HTTP GET
-router.get('/healthCheck', usuarioController.health);
+router.get('/usuarios/detalhesDoUsuario', isAuthenticated, usuarioController.detalhesDoUsuario);
+router.get('/usuarios/healthCheck', usuarioController.health);
 
 export default router;

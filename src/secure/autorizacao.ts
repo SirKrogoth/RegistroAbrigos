@@ -27,7 +27,7 @@ function verify(token: string){
         } as VerifyOptions) as Token;
 
         return {
-            codigo: decoded.codigo
+            decoded
         }
     } catch (error) {
         console.error(error);

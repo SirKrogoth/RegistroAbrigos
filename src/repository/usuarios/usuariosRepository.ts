@@ -8,7 +8,7 @@ function create(usuario: iUsuarios){
     return usuariosModel.create(usuario);
 }
 
-function findByCodigo(usuario: iUsuarioLogin){
+function findByCPF(usuario: iUsuarioLogin){
     return usuariosModel.findOne<iUsuariosModel>({
         where: {
             cpf: usuario.cpf
@@ -16,8 +16,16 @@ function findByCodigo(usuario: iUsuarioLogin){
     })
 }
 
-async function loginByCodigo(usuario: iUsuarioLogin){
-    const response = await findByCodigo(usuario);
+function findByCodigo(codigo: string){
+    return usuariosModel.findOne<iUsuariosModel>({
+        where: {
+            codigo: codigo
+        }
+    });
+}
+
+async function loginByCPF(usuario: iUsuarioLogin){
+    const response = await findByCPF(usuario);
 
     if(response === null) return null;
 
@@ -41,5 +49,5 @@ async function loginByCodigo(usuario: iUsuarioLogin){
 export default {
     create,
     findByCodigo,
-    loginByCodigo
+    loginByCPF
 }

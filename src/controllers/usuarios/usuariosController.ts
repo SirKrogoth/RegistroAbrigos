@@ -37,11 +37,11 @@ async function create(req: Request, res: Response, next: any){
     }
 }
 
-async function loginByCodigo(req: Request, res: Response, next: any){
+async function loginByCPF(req: Request, res: Response, next: any){
     try {
         const usuario = req.body as iUsuarioLogin;
 
-        const result = await usuariosRepository.loginByCodigo(usuario);
+        const result = await usuariosRepository.loginByCPF(usuario);
         
         if(result === null) return res.status(StatusCodes.UNAUTHORIZED).end();        
 
@@ -53,8 +53,26 @@ async function loginByCodigo(req: Request, res: Response, next: any){
     }
 }
 
+async function detalhesDoUsuario(req: Request, res: Response, next: any){
+    try {
+        const codigo = req.user_codigo;
+
+        const result = await usuariosRepository.findByCodigo(codigo);
+
+        if(result === null) return res.status(StatusCodes.UNAUTHORIZED).end();
+
+        result.senha = '';
+
+        res.status(StatusCodes.OK).json(result).end();
+    } catch (error) {
+        console.error(error);
+        res.status(StatusCodes.BAD_REQUEST).end();
+    }
+}
+
 export default {
     health,
     create,
-    loginByCodigo
+    loginByCPF,
+    detalhesDoUsuario
 }
